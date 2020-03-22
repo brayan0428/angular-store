@@ -4,31 +4,25 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ProductComponent } from "./components/product/product.component";
-import { HomeComponent } from "./components/home/home.component";
 import { ProductsComponent } from "./components/products/products.component";
 import { ContactComponent } from "./components/contact/contact.component";
-import { HeaderComponent } from "./components/header/header.component";
-import { FooterComponent } from "./components/footer/footer.component";
-import { BannerComponent } from "./components/banner/banner.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { ProductDetailComponent } from "./components/product-detail/product-detail.component";
-import { LayoutComponent } from './components/layout/layout.component';
+import { LayoutComponent } from "./components/layout/layout.component";
+import { SharedModule } from "./shared/shared.module";
+import { CoreModule } from "./core/core.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
-    HomeComponent,
     ProductsComponent,
     ContactComponent,
-    HeaderComponent,
-    FooterComponent,
-    BannerComponent,
     PageNotFoundComponent,
     ProductDetailComponent,
     LayoutComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, CoreModule],
   providers: [],
   bootstrap: [AppComponent]
 })
