@@ -12,6 +12,7 @@ import { ProductsListComponent } from "./components/products-list/products-list.
 import { FormProductComponent } from './components/form-product/form-product.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { FormEditProductComponent } from './components/form-edit-product/form-edit-product.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RegisterComponent } from './components/register/register.component';
     ProductsListComponent,
     FormProductComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FormEditProductComponent
   ],
   imports: [
     CommonModule,
