@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Product } from "src/app/interfaces/product.model";
+import { CartService } from "src/app/core/services/cart/cart.service";
 
 @Component({
   selector: "app-product",
@@ -12,12 +13,11 @@ export class ProductComponent implements OnInit {
 
   today = new Date();
 
-  constructor() {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {}
 
   addCart() {
-    console.log("Product clicked " + this.product.id);
-    this.productClicked.emit(this.product.id);
+    this.cartService.addCart(this.product);
   }
 }
