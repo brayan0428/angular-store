@@ -9,14 +9,24 @@ import { FormProductComponent } from "./components/form-product/form-product.com
 import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { FormEditProductComponent } from "./components/form-edit-product/form-edit-product.component";
+import { AdminGuard } from "../guards/admin.guard";
 
 const routes: Routes = [
   {
     path: "",
+    component: LoginComponent
+  },
+  {
+    path: "register",
+    component: RegisterComponent
+  },
+  {
+    path: "",
     component: NavComponent,
+    canActivate: [AdminGuard],
     children: [
       {
-        path: "",
+        path: "dashboard",
         component: DashboardComponent
       },
       {
@@ -40,14 +50,6 @@ const routes: Routes = [
         component: FormEditProductComponent
       }
     ]
-  },
-  {
-    path: "login",
-    component: LoginComponent
-  },
-  {
-    path: "register",
-    component: RegisterComponent
   }
 ];
 

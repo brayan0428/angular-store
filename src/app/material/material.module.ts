@@ -17,6 +17,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { LayoutModule } from "@angular/cdk/layout";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatStepperModule } from "@angular/material/stepper";
 
 @NgModule({
   declarations: [],
@@ -38,7 +39,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatPaginatorModule,
     MatSortModule,
     LayoutModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatStepperModule
   ],
   exports: [
     MatButtonModule,
@@ -57,7 +59,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatPaginatorModule,
     MatSortModule,
     LayoutModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatStepperModule
   ]
 })
 export class MaterialModule {}
