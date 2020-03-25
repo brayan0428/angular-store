@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { catchError,map } from "rxjs/operators"
 import { Observable, throwError } from 'rxjs';
+import * as Sentry from "@sentry/browser";
 
 
 interface User {
@@ -35,7 +36,9 @@ export class ProductsService {
   }
 
   deleteProduct(id: string) {
-    return this.http.delete(`${environment.url_api}/products/${id}`);
+    return this.http.delete(`${environment.url_api}/products/${id}`).pipe(
+      catchError(this.handleError)
+    );
   }
 
   getRandomUsers():Observable<User[]>{
@@ -46,6 +49,7 @@ export class ProductsService {
   }
 
   private handleError(error:HttpErrorResponse){
+    Sentry.captureException(error)
     return throwError("Ups, algo salio mal")
   }
 }
