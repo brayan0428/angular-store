@@ -4,6 +4,7 @@ import { ProductsService } from "src/app/core/services/products/products.service
 import { Product } from "src/app/interfaces/product.model";
 import { Observable } from "rxjs";
 import { switchMap } from "rxjs/operators";
+import * as fileSaver from "file-saver"
 
 @Component({
   selector: "app-product-detail",
@@ -23,5 +24,12 @@ export class ProductDetailComponent implements OnInit {
         return this.productsService.getProduct(params.id);
       })
     );
+  }
+
+  getFile(){
+    this.productsService.getFile().subscribe(content => {
+      const blob = new Blob([content], {type: content.type})
+      fileSaver.saveAs(blob, "archivo.pdf")
+    })
   }
 }

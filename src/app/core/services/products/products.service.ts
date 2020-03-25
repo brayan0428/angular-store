@@ -41,6 +41,10 @@ export class ProductsService {
     );
   }
 
+  getFile(){
+    return this.http.get("assets/archivo.pdf", {responseType:'blob'})
+  }
+
   getRandomUsers():Observable<User[]>{
     return this.http.get("https://randomuser.me/api?results=2").pipe(
       catchError(this.handleError),
