@@ -1,57 +1,21 @@
 import { Injectable } from "@angular/core";
 import { Product } from "../../../interfaces/product.model";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment } from "src/environments/environment";
+import { catchError,map } from "rxjs/operators"
+import { Observable, throwError } from 'rxjs';
+
+
+interface User {
+  email:string;
+  phone:String;
+}
 
 @Injectable({
   providedIn: "root"
 })
-export class ProductsService {
-  products: Product[] = [
-    {
-      id: "1",
-      image: "assets/images/camiseta.png",
-      title: "Camiseta",
-      price: 80000,
-      description: "bla bla bla bla bla"
-    },
-    {
-      id: "2",
-      image: "assets/images/hoodie.png",
-      title: "Hoodie",
-      price: 80000,
-      description: "bla bla bla bla bla"
-    },
-    {
-      id: "3",
-      image: "assets/images/mug.png",
-      title: "Mug",
-      price: 80000,
-      description: "bla bla bla bla bla"
-    },
-    {
-      id: "4",
-      image: "assets/images/pin.png",
-      title: "Pin",
-      price: 80000,
-      description: "bla bla bla bla bla"
-    },
-    {
-      id: "5",
-      image: "assets/images/stickers1.png",
-      title: "Stickers",
-      price: 80000,
-      description: "bla bla bla bla bla"
-    },
-    {
-      id: "6",
-      image: "assets/images/stickers2.png",
-      title: "Stickers",
-      price: 80000,
-      description: "bla bla bla bla bla"
-    }
-  ];
 
+export class ProductsService {
   constructor(private http: HttpClient) {}
 
   getAllProducts() {
@@ -72,5 +36,16 @@ export class ProductsService {
 
   deleteProduct(id: string) {
     return this.http.delete(`${environment.url_api}/products/${id}`);
+  }
+
+  getRandomUsers():Observable<User[]>{
+    return this.http.get("https://randomuser.me/api?results=2").pipe(
+      catchError(this.handleError),
+      map((response:any) => response.results as User[])
+    )
+  }
+
+  private handleError(error:HttpErrorResponse){
+    return throwError("Ups, algo salio mal")
   }
 }
